@@ -19,9 +19,12 @@ public class Application {
                 case "c":
                     isActive = false;
                     break;
-                case "addMovie":
-                    movieController.AddMovie();
+                case "movies":
+                    movieController.getAllMovies();
+                case "buy":
+                    System.out.printf("What movie? ");
                 default:
+                    System.out.println("What do you want to do next? ");
                     break;
             }
         }

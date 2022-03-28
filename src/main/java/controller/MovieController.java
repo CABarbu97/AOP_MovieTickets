@@ -11,9 +11,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class MovieController {
-    private Movie model;
-    private MovieService service;
-    private MovieView view;
+    private Movie model = new Movie();
+    private MovieService service = new MovieService();
+    private MovieView view = new MovieView();
 
     public MovieController() {
     }
@@ -75,9 +75,6 @@ public class MovieController {
 
     public void AddMovie()
     {
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Movie title is: ");
         String title = scanner.nextLine();
@@ -88,14 +85,29 @@ public class MovieController {
         System.out.println("Price is: ");
         Integer price = scanner.nextInt();
         System.out.println("Start date is: (d/MM/yyyy)");
-        String startString = scanner.nextLine();
-        LocalDate start = LocalDate.parse(startString, dateFormatter);
+        String startString = scanner.next();
         System.out.println("Time is: (hh:mm) ");
         String timeString = scanner.nextLine();
-        LocalTime time = LocalTime.parse(timeString,timeFormatter);
 
-        service.AddMovie(title, director, noOfTickets, price, start, time);
+        service.AddMovie(title, director, noOfTickets, price, startString, timeString);
 
+    }
+
+    public void getAllMovies()
+    {
+        view.printMovieDetails(service.getAllMovies());
+    }
+
+    public void getMovieByTitle()
+    {
+        Scanner scanner = new Scanner(System.in);
+        String title = scanner.nextLine();
+        view.printDateAndTimeForMovie(service.getMovieByTitle(title));
+    }
+
+    public void getMovieByDate()
+    {
+        
     }
 
 }
