@@ -21,8 +21,11 @@ public class Application {
                     break;
                 case "movies":
                     movieController.getAllMovies();
+                    break;
                 case "buy":
                     System.out.printf("What movie? ");
+                    movieController.getMovieByTitle();
+                    break;
                 default:
                     System.out.println("What do you want to do next? ");
                     break;

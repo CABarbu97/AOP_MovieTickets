@@ -42,4 +42,16 @@ public class MovieService {
     public List<Movie> getMovieByTitle(String title){
         return moviesRepo.getMovieByTitle(title);
     }
+
+    public List<Movie> getMovieByTitleAndDate(String title, String date){
+        return moviesRepo.getMovieByTitleAndDate(title, date);
+    }
+
+    public Movie getMovieByTitleDateAndTime(String title, String startString, String timeString) {
+        return moviesRepo.getMoviesByTitleDateAndTime(title, startString, timeString);
+    }
+
+    public Movie retrieveTickets(Movie chosenMovie, Integer noOfTickets) {
+        return moviesRepo.retrieveTickets(chosenMovie, noOfTickets);
+    }
 }

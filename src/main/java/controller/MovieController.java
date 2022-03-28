@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.NoTicketsException;
 import jdk.swing.interop.SwingInterOpUtils;
 import model.Movie;
 import service.MovieService;
@@ -73,8 +74,7 @@ public class MovieController {
     }
 
 
-    public void AddMovie()
-    {
+    public void AddMovie() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Movie title is: ");
         String title = scanner.nextLine();
@@ -93,21 +93,52 @@ public class MovieController {
 
     }
 
-    public void getAllMovies()
-    {
+    public void getAllMovies() {
         view.printMovieDetails(service.getAllMovies());
     }
 
-    public void getMovieByTitle()
-    {
+    public void getMovieByTitle() {
         Scanner scanner = new Scanner(System.in);
         String title = scanner.nextLine();
-        view.printDateAndTimeForMovie(service.getMovieByTitle(title));
+        try {
+            view.printDateAndTimeForMovie(service.getMovieByTitle(title));
+        } catch (Exception e) {
+            return;
+        }
+        getMovieByTitleAndDate(title);
     }
 
-    public void getMovieByDate()
-    {
-        
+    public void getMovieByTitleAndDate(String title) {
+        System.out.println("Choose a date: ");
+        Scanner scanner = new Scanner(System.in);
+        String startString = scanner.next();
+        view.printTimeForMovie(service.getMovieByTitleAndDate(title, startString));
+
+        getMovieByTitleDateAndTime(title, startString);
     }
 
+    private void getMovieByTitleDateAndTime(String title, String startString) {
+        System.out.println("Pick a time: \n");
+        Scanner scanner = new Scanner(System.in);
+        String timeString = scanner.next();
+        Movie chosenMovie = service.getMovieByTitleDateAndTime(title, startString, timeString);
+        view.printTicketsForMovie(chosenMovie);
+        retrieveTickets(chosenMovie);
+    }
+
+    private void retrieveTickets(Movie chosenMovie) {
+        System.out.println("How many tickets do you want to buy?");
+        Scanner scanner = new Scanner(System.in);
+        Integer noOfTickets = scanner.nextInt();
+        try {
+            if (noOfTickets > chosenMovie.getNoOfTickets()) {
+                throw new NoTicketsException("There are not enough available tickets");
+            }
+
+            service.retrieveTickets(chosenMovie, noOfTickets);
+            view.printReceipt(chosenMovie, noOfTickets);
+        } catch (NoTicketsException e) {
+            e.printStackTrace();
+        }
+    }
 }
