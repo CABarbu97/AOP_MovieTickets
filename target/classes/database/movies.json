@@ -2,13 +2,13 @@
 {"id":"1","title":"Interstellar","director":"Christopher Nolan","noOfTickets":10,"price":30,"start":[2022,2,22],"time":[20,20]}
 {"id":"2","title":"Interstellar","director":"Christopher Nolan","noOfTickets":20,"price":30,"start":[2022,2,23],"time":[20,20]}
 {"id":"3","title":"Interstellar","director":"Christopher Nolan","noOfTickets":12,"price":50,"start":[2022,2,24],"time":[15,10]}
-{"id":"4","title":"Inception","director":"Christopher Nolan","noOfTickets":10,"price":50,"start":[2022,2,25],"time":[19,20]}
-{"id":"5","title":"Inception","director":"Christopher Nolan","noOfTickets":31,"price":20,"start":[2022,2,25],"time":[13,15]}
+{"id":"4","title":"Inception","director":"Christopher Nolan","noOfTickets":5,"price":50,"start":[2022,2,25],"time":[19,20]}
+{"id":"5","title":"Inception","director":"Christopher Nolan","noOfTickets":1,"price":20,"start":[2022,2,25],"time":[13,15]}
 {"id":"6","title":"Lord of the Rings","director":"Peter Jackson","noOfTickets":30,"price":60,"start":[2022,2,22],"time":[18,50]}
 {"id":"16","title":"Lord of the Rings","director":"Peter Jackson","noOfTickets":30,"price":50,"start":[2022,2,23],"time":[14,50]}
 {"id":"7","title":"Star Wars","director":"George Lucas","noOfTickets":30,"price":50,"start":[2022,2,23],"time":[20,20]}
 {"id":"8","title":"Star Wars","director":"George Lucas","noOfTickets":25,"price":70,"start":[2022,2,24],"time":[22,10]}
-{"id":"9","title":"Parasyte","director":"Bong Joon Ho","noOfTickets":15,"price":100,"start":[2022,2,25],"time":[18,20]}
+{"id":"9","title":"Parasyte","director":"Bong Joon Ho","noOfTickets":14,"price":100,"start":[2022,2,25],"time":[18,20]}
 {"id":"17","title":"Parasyte","director":"Bong Joon Ho","noOfTickets":25,"price":100,"start":[2022,2,26],"time":[20,20]}
 {"id":"10","title":"The Batman","director":"Matt Reeves","noOfTickets":25,"price":80,"start":[2022,3,3],"time":[20,20]}
-{"id":"11","title":"The Batman","director":"Matt Reeves","noOfTickets":25,"price":80,"start":[2022,3,3],"time":[21,5]}
+{"id":"11","title":"The Batman","director":"Matt Reeves","noOfTickets":21,"price":80,"start":[2022,3,3],"time":[21,5]}

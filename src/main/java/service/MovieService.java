@@ -1,6 +1,9 @@
 package service;
 
 import database.MoviesRepo;
+import exceptions.InvalidDateException;
+import exceptions.InvalidTimeException;
+import exceptions.NoMovieException;
 import model.Movie;
 
 import java.time.LocalDate;
@@ -40,15 +43,46 @@ public class MovieService {
     }
 
     public List<Movie> getMovieByTitle(String title){
-        return moviesRepo.getMovieByTitle(title);
+        try{
+            return moviesRepo.getMovieByTitle(title);
+        }
+        catch (NoMovieException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public List<Movie> getMovieByTitleAndDate(String title, String date){
-        return moviesRepo.getMovieByTitleAndDate(title, date);
+        try {
+            if (date.split("-").length != 3) {
+                throw new InvalidDateException();
+            }
+        }catch (InvalidDateException ide){
+            ide.printStackTrace();
+        }
+        try {
+            return moviesRepo.getMovieByTitleAndDate(title, date);
+        } catch (InvalidDateException ide) {
+            ide.printStackTrace();
+            return null;
+        }
     }
 
     public Movie getMovieByTitleDateAndTime(String title, String startString, String timeString) {
-        return moviesRepo.getMoviesByTitleDateAndTime(title, startString, timeString);
+        try{
+            if(timeString.split(":").length != 2){
+                throw new InvalidTimeException("The time format is invalid");
+            }
+        }catch (InvalidTimeException ite){
+            ite.printStackTrace();
+        }
+        try{
+            return moviesRepo.getMoviesByTitleDateAndTime(title, startString, timeString);
+        }catch (InvalidTimeException ite){
+            ite.printStackTrace();
+            return null;
+        }
     }
 
     public Movie retrieveTickets(Movie chosenMovie, Integer noOfTickets) {

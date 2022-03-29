@@ -1,14 +1,12 @@
 package controller;
 
 import exceptions.NoTicketsException;
-import jdk.swing.interop.SwingInterOpUtils;
 import model.Movie;
 import service.MovieService;
 import view.MovieView;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class MovieController {
@@ -75,6 +73,7 @@ public class MovieController {
 
 
     public void AddMovie() {
+        boolean proceed = false;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Movie title is: ");
         String title = scanner.nextLine();
@@ -89,8 +88,9 @@ public class MovieController {
         System.out.println("Time is: (hh:mm) ");
         String timeString = scanner.nextLine();
 
-        service.AddMovie(title, director, noOfTickets, price, startString, timeString);
-
+        proceed = true;
+        if(proceed)
+            service.AddMovie(title, director, noOfTickets, price, startString, timeString);
     }
 
     public void getAllMovies() {
@@ -98,6 +98,7 @@ public class MovieController {
     }
 
     public void getMovieByTitle() {
+        System.out.printf("What movie? \n");
         Scanner scanner = new Scanner(System.in);
         String title = scanner.nextLine();
         try {
@@ -126,7 +127,7 @@ public class MovieController {
         retrieveTickets(chosenMovie);
     }
 
-    private void retrieveTickets(Movie chosenMovie) {
+    public void retrieveTickets(Movie chosenMovie) {
         System.out.println("How many tickets do you want to buy?");
         Scanner scanner = new Scanner(System.in);
         Integer noOfTickets = scanner.nextInt();
@@ -134,11 +135,11 @@ public class MovieController {
             if (noOfTickets > chosenMovie.getNoOfTickets()) {
                 throw new NoTicketsException("There are not enough available tickets");
             }
-
             service.retrieveTickets(chosenMovie, noOfTickets);
             view.printReceipt(chosenMovie, noOfTickets);
         } catch (NoTicketsException e) {
             e.printStackTrace();
         }
     }
+
 }
